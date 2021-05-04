@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import EventComponent from "./EventComponent";
 
 const favItems = [
   { name: "iPhone", model: 12 },
@@ -8,11 +7,17 @@ const favItems = [
   { name: "macBook", model: 2020 },
 ];
 
-const FindFavItem: React.FC = () => {
+const FindFavItemR: React.FC = () => {
   const [favName, setFavName] = useState("");
   const [favItem, setFavItem] = useState<
     { name: string; model: number } | undefined
   >();
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const onClicked = () => {
     const foundItem = favItems.find(
@@ -25,9 +30,8 @@ const FindFavItem: React.FC = () => {
     <div>
       <h3>Find Fav Item</h3>
 
-      <EventComponent />
-
       <input
+        ref={inputRef}
         type="text"
         value={favName}
         onChange={(e) => setFavName(e.target.value)}
@@ -47,4 +51,4 @@ const FindFavItem: React.FC = () => {
   );
 };
 
-export default FindFavItem;
+export default FindFavItemR;
