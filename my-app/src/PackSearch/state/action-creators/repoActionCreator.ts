@@ -4,8 +4,6 @@ import { RepoActionType } from "../../PackageSearcher.model";
 import { RepoActions } from "../actions/repoActions";
 
 export const searchRepo = (term: string) => {
-  console.log(term);
-
   return async (dispatch: Dispatch<RepoActions>) => {
     dispatch({ type: RepoActionType.SEARCH_REPO });
 
